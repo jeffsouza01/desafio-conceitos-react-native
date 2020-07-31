@@ -27,15 +27,10 @@ export default function App() {
 
     const likes = response.data.likes;
 
-    const repositoriesUpdated = repositories.map(repository => {
-      if (repository.id === id) {
-        return {...repository, likes};
-      } else {
-        return repository;
-      }
-    });
+    const repositoriesUpdated = repositories.map(repository => 
+      repository.id === id ? {...repository, likes} : repository);
 
-    setRepositories([repositoriesUpdated]);
+    setRepositories(repositoriesUpdated);
 
   }
 
@@ -53,7 +48,7 @@ export default function App() {
 
               <View style={styles.techsContainer}>
                 {repository.techs.map(tech => (
-                  <Text key={tech} style={styles.tech}>
+                  <Text style={styles.tech}>
                     {tech}
                   </Text>
                 ))};
